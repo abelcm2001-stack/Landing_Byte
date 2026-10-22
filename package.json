@@ -1,0 +1,13 @@
+{
+  "scripts": {
+    "build:css": "sass --no-source-map styles.scss:styles.css",
+    "watch:css": "sass --watch styles.scss:styles.css",
+    "serve": "http-server . -a 127.0.0.1 -p 8080 -c-1",
+    "dev": "concurrently -k \"npm:watch:css\" \"npm:serve\""
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1",
+    "http-server": "^14.1.1",
+    "sass": "^1.89.2"
+  }
+}

@@ -21,7 +21,7 @@ En `index.html` se encuentra la presentación del restaurante:
 
 ### Diseño y tema
 
-- `styles.css` reúne los estilos compartidos: colores, tipografías, navegación, portada, menú, tarjetas y pie de página.
+- `styles.scss` reúne los estilos compartidos: colores, tipografías, navegación, portada, menú, tarjetas y pie de página. Se compila a `styles.css`.
 - `reservar.css` define la presentación del formulario, la confirmación y el pie de las páginas de reserva.
 - El diseño se adapta a pantallas estrechas mediante reglas CSS responsive.
 - El selector de tema claro/oscuro está en las páginas. `theme.js` guarda la elección en `localStorage` y restaura el estado del selector al volver a cargar la página; las variables y reglas de `styles.css` aplican los colores.
@@ -33,8 +33,9 @@ En `index.html` se encuentra la presentación del restaurante:
 | `index.html` | Página principal del restaurante y menú. |
 | `reservar.html` | Formulario de reserva de demostración. |
 | `reserva-confirmada.html` | Pantalla de confirmación de demostración. |
-| `styles.css` | Estilos generales, menú, tema y adaptación responsive. |
+| `styles.scss` / `styles.css` | Fuente SCSS y CSS compilado para los estilos generales, menú, tema y adaptación responsive. |
 | `reservar.css` | Estilos de las páginas de reserva y confirmación. |
+| `package.json` | Dependencia de desarrollo Sass y comandos de compilación. |
 | `theme.js` | Persistencia de la preferencia de tema en el navegador. |
 | `images/` | Fotografías de portada, interior, platos y bebidas. |
 | `.vscode/launch.json` | Configuración de VS Code para abrir el sitio en Chrome en `http://localhost:8080`. |
@@ -42,12 +43,18 @@ En `index.html` se encuentra la presentación del restaurante:
 ## Tecnologías
 
 - HTML para el contenido y la estructura.
-- CSS para el diseño, los filtros del menú y los temas.
+- Sass/SCSS como fuente de estilos, compilado a CSS para el navegador.
 - JavaScript para recordar el tema seleccionado.
 - Bootstrap 5.3.3, cargado desde jsDelivr, para componentes de navegación.
 - Fuentes Archivo Black y DM Sans, cargadas desde Google Fonts.
 
 Bootstrap y Google Fonts se cargan desde internet, por lo que esas dependencias visuales externas requieren conexión. 
+
+## Compilar Sass
+
+Instala las dependencias de desarrollo una vez con `npm install`. Para compilar `styles.scss` a `styles.css`, ejecuta `npm run build:css`. Para abrir la web y recompilar automáticamente al guardar cambios, ejecuta `npm run dev` y visita `http://localhost:8080`. Este comando inicia tanto el vigilante de Sass como el servidor local; compilar Sass por sí solo no sirve la página web. Para detener ambos procesos, pulsa `Ctrl+C`.
+
+La hoja `styles.scss` de la landing incluye el mixin `respond-to` para las reglas responsive y `pill-shape` para los bordes redondeados, además de las funciones propias `space` y `fluid-size`. También utiliza la función nativa de Sass `math.div` para calcular el espaciado.
 
 ## W3C CSS VALIDATOR
 
